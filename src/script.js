@@ -24,4 +24,4 @@ async function getPokemon( n = 5 ) {
 
 const getPokemonBtn = document.getElementById("gotta-catch-em")
 // creating an event listener for clicks
-getPokemonBtn.addEventListener('click', getPokemon())
+getPokemonBtn.addEventListener('click', () => {getPokemon()})
