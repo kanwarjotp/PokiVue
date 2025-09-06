@@ -63,7 +63,7 @@
   // TODO: create a function to display the pokemon information - or just use Vue?
   function addHTMLPokemon(parsedPokemon) {
       const pokemonCard = `
-          <div>
+          <div class="p-4">
           <h3>${parsedPokemon.name}</h3>
           <img src=${parsedPokemon.pokemonImage}>
           <audio controls>
@@ -82,16 +82,23 @@
 
 <template>
   <div>
-    <div class="page-heading">
-      <h1> PokeVue </h1>
-      <p>A fun way to explore the Pokemon world</p>
+    <div class=" d-flex justify-content-center flex-column">
+      <div class="page-heading text-center p-2">
+        <span class="h1"> PokeVue </span>
+        <p>A fun way to explore the Pokemon world</p>
+      </div>
+
+      <div class="align-self-center">
+          <button @click="getPokemon()" id="gotta-catch-em" class="btn btn-success">Get Pokemons</button>
+      </div>
     </div>
 
-    <div>
-        <button @click="getPokemon()" id="gotta-catch-em">Get Pokemons</button>
-    </div>
-
-    <div id="poke-grid">
+    <div id="poke-grid" class="d-flex flex-wrap justify-content-center mt-5">
     </div>
   </div>
 </template>
+
+
+<style scoped>
+
+</style>
