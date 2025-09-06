@@ -28,7 +28,6 @@
       pokemons.forEach((pokemon) => {addHTMLPokemon(pokemon)})
 
   }
-
   function parsePokemonData(pokemonObj) {
       const name = pokemonObj.name
       const height = pokemonObj.height
