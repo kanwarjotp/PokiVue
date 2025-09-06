@@ -1,11 +1,14 @@
-<script setup></script>
+<script setup>
+import NavBar from './components/NavBar.vue';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <NavBar />
+  <main>
+    <router-view></router-view>
+  </main>
 </template>
 
 <style scoped></style>
