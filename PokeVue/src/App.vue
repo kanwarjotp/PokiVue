@@ -1,12 +1,11 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
-import 'bootstrap/dist/css/bootstrap.min.css'
-
 </script>
 
 <template>
   <NavBar />
   <main>
+    xskx
     <router-view></router-view>
   </main>
 </template>
