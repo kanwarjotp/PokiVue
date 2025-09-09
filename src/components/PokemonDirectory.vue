@@ -76,8 +76,8 @@ import PokeCards from './PokeCards.vue';
   <div>
     <div class=" d-flex justify-content-center flex-column">
       <div class="page-heading text-center p-2">
-        <span class="h1"> PokeVue </span>
-        <p>A fun way to explore the Pokemon world</p>
+        <span class="h1"> PokéVue </span>
+        <p>A fun way to explore the Pokémon world</p>
       </div>
 
       <div class="d-flex justify-content-center input-group">
