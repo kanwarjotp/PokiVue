@@ -5,12 +5,11 @@ import PokeCards from './PokeCards.vue';
   const POKE_URL = "https://pokeapi.co/api/v2/pokemon/"
 
   // pokemons global variable
-  var pokemons = ref(null)
+  var pokemons = ref([])
   // noPokemons
   const noPokemons = ref(10)
 
   async function getPokemon( n = 10 ) {
-    let recievedPokemons = []
       try {
           for (let i = 1; i <= n; i++) {
               console.log("sending a request")
@@ -22,13 +21,13 @@ import PokeCards from './PokeCards.vue';
 
               const data = await response.json()
               console.log(data)
-              recievedPokemons.push(parsePokemonData(data))
+              // pushing to the list as the pokemons starts being recievd
+              pokemons.value.push(parsePokemonData(data))
           }
       } catch(error) {
           console.error(error);
       }
 
-      pokemons.value = recievedPokemons
       console.log(pokemons)
 
   }
