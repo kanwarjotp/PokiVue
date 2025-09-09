@@ -6,6 +6,8 @@ import PokeCards from './PokeCards.vue';
 
   // pokemons global variable
   var pokemons = ref(null)
+  // noPokemons
+  const noPokemons = 10
 
   async function getPokemon( n = 10 ) {
     let recievedPokemons = []
@@ -79,8 +81,9 @@ import PokeCards from './PokeCards.vue';
         <p>A fun way to explore the Pokemon world</p>
       </div>
 
-      <div class="align-self-center">
-          <button @click="getPokemon()" id="gotta-catch-em" class="btn btn-success">Get Pokemons</button>
+      <div class="d-flex justify-content-center input-group">
+          <button @click="getPokemon(noPokemons)" id="gotta-catch-em" class="btn btn-success">Get Pokemons</button>
+          <input type="text" id="noPokemons" class="form-control" placeholder="10" v-model="noPokemons" >
       </div>
     </div>
 
@@ -107,5 +110,8 @@ import PokeCards from './PokeCards.vue';
 
 
 <style scoped>
+#noPokemons {
+  max-width:fit-content
+}
 
 </style>
