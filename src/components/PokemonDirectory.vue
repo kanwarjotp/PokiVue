@@ -7,7 +7,7 @@ import PokeCards from './PokeCards.vue';
   // pokemons global variable
   var pokemons = ref(null)
   // noPokemons
-  const noPokemons = 10
+  const noPokemons = ref(10)
 
   async function getPokemon( n = 10 ) {
     let recievedPokemons = []
