@@ -1,10 +1,14 @@
 <script setup>
-
+import { ref } from 'vue';
+import PokeCards from './PokeCards.vue';
 
   const POKE_URL = "https://pokeapi.co/api/v2/pokemon/"
 
+  // pokemons global variable
+  var pokemons = ref(null)
+
   async function getPokemon( n = 10 ) {
-      const pokemons = []
+    let recievedPokemons = []
       try {
           for (let i = 1; i <= n; i++) {
               console.log("sending a request")
@@ -16,18 +20,17 @@
 
               const data = await response.json()
               console.log(data)
-              pokemons.push(parsePokemonData(data))
+              recievedPokemons.push(parsePokemonData(data))
           }
       } catch(error) {
           console.error(error);
       }
 
+      pokemons.value = recievedPokemons
       console.log(pokemons)
 
-      // add data to inner html
-      pokemons.forEach((pokemon) => {addHTMLPokemon(pokemon)})
-
   }
+
   function parsePokemonData(pokemonObj) {
       const name = pokemonObj.name
       const height = pokemonObj.height
@@ -45,7 +48,13 @@
       }
 
       // TODO: get three important points except the demographic values
-      const cries = pokemonObj.cries
+      let cries = pokemonObj.cries
+      // set src to latest, or legacy as fallback
+      if (cries.latest == "") {
+        cries = cries.legacy
+      } else {
+        cries = cries.latest
+      }
       const abilities = pokemonObj.abilities
 
       const pokemonData = {
@@ -55,28 +64,10 @@
           species: species.name,
           pokemonImage: pokemonImage,
           cries: cries,
-          abilities: abilities
+          abilities: abilities[0].ability
       }
-      return pokemonData
-  }
 
-  // TODO: create a function to display the pokemon information - or just use Vue?
-  function addHTMLPokemon(parsedPokemon) {
-      const pokemonCard = `
-          <div class="p-4">
-          <h3>${parsedPokemon.name}</h3>
-          <img src=${parsedPokemon.pokemonImage}>
-          <audio controls>
-              <source src=${parsedPokemon.cries.latest} type="audio/ogg">
-          </audio>
-          <ul>
-              <li>Height: ${parsedPokemon.height}</li>
-              <li>Experience: ${parsedPokemon.experience}</li>
-              <li>Species: ${parsedPokemon.species}</li>
-              <li>Ability: ${parsedPokemon.abilities[1].ability.name} <sub>(more verbose information to come soon)</sub></li>
-          </ul>
-          </div>`
-      document.getElementById("poke-grid").innerHTML += pokemonCard
+      return pokemonData
   }
 </script>
 
@@ -96,6 +87,22 @@
     <div id="poke-grid" class="d-flex flex-wrap justify-content-center mt-5">
     </div>
   </div>
+
+  <div class=" d-flex justify-content-center flex-wrap">
+    <PokeCards
+    class="m-3"
+    v-for="pokemon in pokemons"
+    :key="pokemon.name"
+    :name="pokemon.name"
+    :abilities="pokemon.abilities"
+    :cries="pokemon.cries"
+    :experience="pokemon.experience"
+    :height="pokemon.height"
+    :pokemonImage="pokemon.pokemonImage"
+    :species="pokemon.species"
+    />
+  </div>
+
 </template>
 
 
