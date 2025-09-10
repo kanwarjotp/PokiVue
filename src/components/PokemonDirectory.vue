@@ -6,10 +6,19 @@ import PokeCards from './PokeCards.vue';
 
   // pokemons global variable
   var pokemons = ref([])
+  var isCallingPokemons = false
   // noPokemons
   const noPokemons = ref(10)
 
   async function getPokemon( n = 10 ) {
+    if (isCallingPokemons == true) {
+      // check if a request is already running
+      window.alert("Please wait for the previous request to complete")
+      return
+    }
+
+    isCallingPokemons = true
+    pokemons.value = []
       try {
           for (let i = 1; i <= n; i++) {
               console.log("sending a request")
@@ -27,7 +36,8 @@ import PokeCards from './PokeCards.vue';
       } catch(error) {
           console.error(error);
       }
-
+      // set calling pokemons flag back to false
+      isCallingPokemons = false
       console.log(pokemons)
 
   }
@@ -38,7 +48,7 @@ import PokeCards from './PokeCards.vue';
       const experience = pokemonObj.base_experience
       const species = pokemonObj.species
 
-      // TODO: get pokemon image
+      // get pokemon image
       let pokemonImage = ""
       try{
           pokemonImage = pokemonObj.sprites.other.official_artwork.front_default
@@ -48,7 +58,7 @@ import PokeCards from './PokeCards.vue';
           pokemonImage = pokemonObj.sprites.front_default
       }
 
-      // TODO: get three important points except the demographic values
+      // get three important points except the demographic values
       let cries = pokemonObj.cries
       // set src to latest, or legacy as fallback
       if (cries.latest == "") {
