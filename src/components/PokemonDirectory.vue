@@ -6,10 +6,18 @@ import PokeCards from './PokeCards.vue';
 
   // pokemons global variable
   var pokemons = ref([])
+  var isCallingPokemons = false
   // noPokemons
   const noPokemons = ref(10)
 
   async function getPokemon( n = 10 ) {
+    if (isCallingPokemons == true) {
+      // check if a request is already running
+      window.alert("Please wait for the previous request to complete")
+      return
+    }
+
+    isCallingPokemons = true
     pokemons.value = []
       try {
           for (let i = 1; i <= n; i++) {
@@ -28,7 +36,8 @@ import PokeCards from './PokeCards.vue';
       } catch(error) {
           console.error(error);
       }
-
+      // set calling pokemons flag back to false
+      isCallingPokemons = false
       console.log(pokemons)
 
   }
