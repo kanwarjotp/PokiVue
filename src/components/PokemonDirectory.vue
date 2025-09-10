@@ -10,6 +10,7 @@ import PokeCards from './PokeCards.vue';
   const noPokemons = ref(10)
 
   async function getPokemon( n = 10 ) {
+    pokemons.value = []
       try {
           for (let i = 1; i <= n; i++) {
               console.log("sending a request")
@@ -38,7 +39,7 @@ import PokeCards from './PokeCards.vue';
       const experience = pokemonObj.base_experience
       const species = pokemonObj.species
 
-      // TODO: get pokemon image
+      // get pokemon image
       let pokemonImage = ""
       try{
           pokemonImage = pokemonObj.sprites.other.official_artwork.front_default
@@ -48,7 +49,7 @@ import PokeCards from './PokeCards.vue';
           pokemonImage = pokemonObj.sprites.front_default
       }
 
-      // TODO: get three important points except the demographic values
+      // get three important points except the demographic values
       let cries = pokemonObj.cries
       // set src to latest, or legacy as fallback
       if (cries.latest == "") {
