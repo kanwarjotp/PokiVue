@@ -31,7 +31,6 @@
 <style scoped>
 footer {
   background-color: black;
-  position: relative;
   bottom: 0;
   width: 100%;
 }
