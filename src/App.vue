@@ -1,4 +1,5 @@
 <script setup>
+import FooterComp from './components/FooterComp.vue';
 import NavBar from './components/NavBar.vue';
 </script>
 
@@ -7,6 +8,11 @@ import NavBar from './components/NavBar.vue';
   <main>
     <router-view></router-view>
   </main>
+  <FooterComp />
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+  height: 100vh;
+}
+</style>
