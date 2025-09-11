@@ -1,6 +1,6 @@
 <script setup>
 // a pokemon object
-const props = defineProps(
+defineProps(
   {
     name: String,
     height: Number,
@@ -11,10 +11,6 @@ const props = defineProps(
     abilities: String
   }
 )
-
-console.log(props.cries)
-console.log("hell")
-
 </script>
 
 

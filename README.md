@@ -33,3 +33,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+# Disclaimer
+
+This project uses the PokéAPI and is not affiliated with, endorsed, or sponsored by Nintendo, Game Freak, or The Pokémon Company. It is intended for educational and demonstration purposes only.
