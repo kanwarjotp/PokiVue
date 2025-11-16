@@ -14,6 +14,9 @@
           <p>
           <span>For educational and demonstration purposes only.</span>
           </p>
+          <p>
+            <a href="https://www.flaticon.com/free-icons/big-data" title="big data icons">Big data icons created by xnimrodx - Flaticon</a>
+          </p>
         </small>
       </div >
 
